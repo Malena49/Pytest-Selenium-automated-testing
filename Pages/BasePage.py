@@ -12,7 +12,7 @@ class BasePage:
         self.wait = WebDriverWait(self.driver, 10)
 
     def do_click(self, by_locator):
-        self.wait.until(EC.visibility_of_element_located(by_locator)).click()
+        self.wait.until(EC.element_to_be_clickable(by_locator)).click()
 
     def do_send_keys(self, by_locator, text):
         self.wait.until(EC.visibility_of_element_located(by_locator)).send_keys(text)
@@ -28,3 +28,7 @@ class BasePage:
     def get_title(self, title):
         self.wait.until(EC.title_is(title))
         return self.driver.title
+
+    def element_contain_text(self, by_locator, text):
+        element = self.wait.until(EC.text_to_be_present_in_element(by_locator, text))
+        return bool(element)

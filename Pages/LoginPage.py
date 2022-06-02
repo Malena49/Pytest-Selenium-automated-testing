@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 
 from Config.config import TestData
@@ -15,6 +17,8 @@ class LoginPage(BasePage):
     PASSWORD = (By.ID, "password")
     BtnSubmit = (By.CSS_SELECTOR, 'button[type="submit"]')
     HEADER = (By.CSS_SELECTOR, '#content h2')
+    MESSAGE = (By.ID, "flash")
+    BtnQuit = (By.CSS_SELECTOR, 'a[href="/logout"]')
 
     # this is used to get login page title
     def get_login_page_title(self, title):
@@ -33,3 +37,10 @@ class LoginPage(BasePage):
         self.do_send_keys(self.USERNAME, username)
         self.do_send_keys(self.PASSWORD, password)
         self.do_click(self.BtnSubmit)
+
+    def do_logout(self, username, password):
+        self.do_login(username, password)
+        self.do_click(self.BtnQuit)
+
+    def is_message_exist(self, text):
+        return self.element_contain_text(self.MESSAGE, text)

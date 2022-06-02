@@ -17,5 +17,15 @@ class TestLogin(BaseTest):
         flag = self.loginPage.is_login_button_exist()
         assert flag
 
+    def test_do_logout(self):
+        self.loginPage.do_logout(TestData.USER_NAME, TestData.User_PASSWORD)
+        logout_message = self.loginPage.is_message_exist(TestData.LOGOUT_MESSAGE)
+        assert logout_message
+
     def test_do_login(self):
         self.loginPage.do_login(TestData.USER_NAME, TestData.User_PASSWORD)
+        login_message = self.loginPage.is_message_exist(TestData.LOGIN_MESSAGE)
+        assert login_message
+
+
+
