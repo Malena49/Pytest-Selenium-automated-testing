@@ -1,4 +1,7 @@
 venv
-.pytest_cache
+.pytest_cache/
 assets
 report.html
+.idea
+__pycache__/
+
