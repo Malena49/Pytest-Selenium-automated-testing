@@ -3,3 +3,4 @@ class TestData:
     USER_NAME = "tomsmith"
     User_PASSWORD = "SuperSecretPassword!"
     LOGIN_PAGE_TITLE = "The Internet"
+    LOGIN_PAGE_HEADER = "Login Page"

@@ -11,6 +11,7 @@ def driver_init(request):
     if request.param == "firefox":
         web_driver = webdriver.Firefox()
     request.cls.driver = web_driver
+    web_driver.maximize_window()
     web_driver.implicitly_wait(10)
     request.cls.loginPage = LoginPage(web_driver)
 

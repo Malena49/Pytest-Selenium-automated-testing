@@ -18,7 +18,7 @@ class BasePage:
         self.wait.until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
     def get_element_text(self, by_locator):
-        element = self.wait.until(EC.invisibility_of_element_located(by_locator))
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
         return element.text
 
     def is_clickable(self, by_locator):
