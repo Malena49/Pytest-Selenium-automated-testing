@@ -1,4 +1,3 @@
-import time
 
 from selenium.webdriver.common.by import By
 
@@ -10,8 +9,6 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        url = TestData.BASE_URL.format('login')
-        self.driver.get(url)
 
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
@@ -19,6 +16,9 @@ class LoginPage(BasePage):
     HEADER = (By.CSS_SELECTOR, '#content h2')
     MESSAGE = (By.ID, "flash")
     BtnQuit = (By.CSS_SELECTOR, 'a[href="/logout"]')
+
+    def get_url(self):
+        self.driver.get(TestData.BASE_URL + '/login')
 
     # this is used to get login page title
     def get_login_page_title(self, title):

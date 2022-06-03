@@ -19,7 +19,7 @@ class BasePage:
 
     def get_element_text(self, by_locator):
         element = self.wait.until(EC.visibility_of_element_located(by_locator))
-        return element.text
+        return element.get_attribute('innerHTML')
 
     def is_clickable(self, by_locator):
         element = self.wait.until(EC.element_to_be_clickable(by_locator))
@@ -32,3 +32,10 @@ class BasePage:
     def element_contain_text(self, by_locator, text):
         element = self.wait.until(EC.text_to_be_present_in_element(by_locator, text))
         return bool(element)
+
+    def get_array(self, by_locator):
+        return self.wait.until(EC.visibility_of_all_elements_located(by_locator))
+
+    def is_selected(self, by_locator):
+        element = self.wait.until(EC.element_to_be_clickable(by_locator)).is_selected()
+        return element
