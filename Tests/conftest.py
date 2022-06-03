@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 
+from Pages.AuthPage import AuthPage
 from Pages.HomePage import HomePage
 from Pages.LoginPage import LoginPage
 
@@ -17,6 +18,7 @@ def driver_init(request):
     web_driver.implicitly_wait(10)
     request.cls.homePage = HomePage(web_driver)
     request.cls.loginPage = LoginPage(web_driver)
+    request.cls.authPage = AuthPage(web_driver)
 
     yield
     web_driver.close()

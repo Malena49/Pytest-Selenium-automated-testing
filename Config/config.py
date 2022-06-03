@@ -7,3 +7,4 @@ class TestData:
     LOGIN_MESSAGE = "You logged into a secure area!"
     LOGOUT_MESSAGE = "You logged out of the secure area!"
     CHECKBOX_HEADER = "Checkboxes"
+    BASIC_AUTH_MESSAGE = "Congratulations! You must have the proper credentials"
