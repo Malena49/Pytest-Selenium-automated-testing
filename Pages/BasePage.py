@@ -4,6 +4,7 @@ It contains all generic methods and utilities
 """
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import requests
 
 
 class BasePage:
@@ -39,3 +40,7 @@ class BasePage:
     def is_selected(self, by_locator):
         element = self.wait.until(EC.element_to_be_clickable(by_locator)).is_selected()
         return element
+
+    def get_http_code(self, url):
+        response = requests.get(url, stream=True).status_code
+        return response
