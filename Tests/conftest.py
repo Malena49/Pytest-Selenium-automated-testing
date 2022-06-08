@@ -1,7 +1,9 @@
 import pytest
 from selenium import webdriver
 
+from Pages.AddRemovePage import AddRemovePage
 from Pages.AuthPage import AuthPage
+from Pages.ContextMenuPage import ContextMenuPage
 from Pages.HomePage import HomePage
 from Pages.ImgPage import ImgPage
 from Pages.LoginPage import LoginPage
@@ -21,6 +23,8 @@ def driver_init(request):
     request.cls.loginPage = LoginPage(web_driver)
     request.cls.authPage = AuthPage(web_driver)
     request.cls.imgPage = ImgPage(web_driver)
+    request.cls.addRemove = AddRemovePage(web_driver)
+    request.cls.contextMenu = ContextMenuPage(web_driver)
 
     yield
     web_driver.close()

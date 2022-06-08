@@ -1,6 +1,5 @@
 from Config.config import TestData
 from Tests.test_base import BaseTest
-from selenium.webdriver.common.by import By
 
 
 class TestImg(BaseTest):

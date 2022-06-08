@@ -10,3 +10,4 @@ class TestData:
     BASIC_AUTH_MESSAGE = "Congratulations! You must have the proper credentials"
     USERNAME = "admin"
     PASSWORD = "admin"
+    ALERT = "You selected a context menu"

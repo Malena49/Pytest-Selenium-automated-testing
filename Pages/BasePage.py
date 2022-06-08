@@ -2,15 +2,20 @@
 this  class is parent of all pages
 It contains all generic methods and utilities
 """
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import requests
+from selenium.webdriver.common.action_chains import ActionChains
+
+
 
 
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
+        self.action = ActionChains(self.driver)
 
     def do_click(self, by_locator):
         self.wait.until(EC.element_to_be_clickable(by_locator)).click()
@@ -44,3 +49,25 @@ class BasePage:
     def get_http_code(self, url):
         response = requests.get(url, stream=True).status_code
         return response
+
+    def is_enable(self, by_locator):
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
+        return bool(element)
+
+    def is_disabled(self, by_locator):
+        element = self.wait.until(EC.invisibility_of_element_located(by_locator))
+        return bool(element)
+
+    def right_click(self, by_locator):
+        element = self.wait.until(EC.visibility_of_element_located(by_locator))
+        self.action.context_click(on_element=element).perform()
+
+    def get_alert_text(self):
+        ale = Alert(self.driver)
+        return ale.text
+
+    def accept_alert(self):
+        ale = Alert(self.driver)
+        ale.accept()
+
+
