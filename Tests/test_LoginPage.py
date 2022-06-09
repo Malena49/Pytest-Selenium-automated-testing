@@ -3,7 +3,6 @@ from Tests.test_base import BaseTest
 
 
 class TestLogin(BaseTest):
-
     def test_login_page_title(self):
         self.loginPage.get_url()
         title = self.loginPage.get_login_page_title(TestData.LOGIN_PAGE_TITLE)
@@ -20,6 +19,7 @@ class TestLogin(BaseTest):
         assert flag
 
     def test_do_logout(self):
+        self.loginPage.get_url()
         self.loginPage.do_logout(TestData.USER_NAME, TestData.User_PASSWORD)
         logout_message = self.loginPage.is_message_exist(TestData.LOGOUT_MESSAGE)
         assert logout_message

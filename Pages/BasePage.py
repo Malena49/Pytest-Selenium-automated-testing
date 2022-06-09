@@ -6,9 +6,7 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import requests
-from selenium.webdriver.common.action_chains import ActionChains
-
-
+from selenium.webdriver import ActionChains
 
 
 class BasePage:
@@ -29,7 +27,7 @@ class BasePage:
 
     def is_clickable(self, by_locator):
         element = self.wait.until(EC.element_to_be_clickable(by_locator))
-        return bool(element)
+        return element
 
     def get_title(self, title):
         self.wait.until(EC.title_is(title))
@@ -52,11 +50,11 @@ class BasePage:
 
     def is_enable(self, by_locator):
         element = self.wait.until(EC.visibility_of_element_located(by_locator))
-        return bool(element)
+        return element
 
     def is_disabled(self, by_locator):
         element = self.wait.until(EC.invisibility_of_element_located(by_locator))
-        return bool(element)
+        return element
 
     def right_click(self, by_locator):
         element = self.wait.until(EC.visibility_of_element_located(by_locator))
@@ -69,5 +67,9 @@ class BasePage:
     def accept_alert(self):
         ale = Alert(self.driver)
         ale.accept()
+
+    def drag_and_drop(self, source, target):
+        self.action.drag_and_drop(source, target).perform()
+
 
 
