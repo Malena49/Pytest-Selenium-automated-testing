@@ -1,4 +1,3 @@
-from Config.config import TestData
 from Tests.test_base import BaseTest
 
 
