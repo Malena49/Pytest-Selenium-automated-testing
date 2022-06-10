@@ -6,6 +6,7 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import requests
+import pyautogui as P
 from selenium.webdriver import ActionChains
 
 
@@ -14,6 +15,7 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
         self.action = ActionChains(self.driver)
+        P.FAILSAFE = False
 
     def do_click(self, by_locator):
         self.wait.until(EC.element_to_be_clickable(by_locator)).click()
@@ -68,8 +70,13 @@ class BasePage:
         ale = Alert(self.driver)
         ale.accept()
 
-    def drag_and_drop(self, source, target):
-        self.action.drag_and_drop(source, target).perform()
+    def drag_and_drop(self, a, b, e, c, d, f):
+        # self.action.drag_and_drop(source, target).perform()
+        P.moveTo(a, b, e)
+        P.drag(c, d, f, button='left')
+
+    def move_mouse_offset(self, x, y):
+        P.moveTo(x, y, 1)
 
 
 
