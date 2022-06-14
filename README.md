@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Web Testing avec Pytest (Selenium) et pytest-html report <br>
+Web Testing avec Pytest (Selenium, PyAutoGUI, requests) et pytest-html report <br>
 Site testé : https://the-internet.herokuapp.com/
 
 ### Pré-requis
@@ -15,6 +15,8 @@ Site testé : https://the-internet.herokuapp.com/
 
 - Executer la commande ``git clone https://github.com/Malena49/Pytest-Selenium-automated-testing.git``
 - Executer la commande ``pip install selenium``
+- Executer la commande ``pip install PyAutoGUI``
+- Executer la commande ``pip install requests``
 - Executer la commande ``pip install pytest``
 - Executer la commande ``pip install pytest-html``
 - Executer la commande ``pip install pytest-xdist`` pour Parallel Testing
