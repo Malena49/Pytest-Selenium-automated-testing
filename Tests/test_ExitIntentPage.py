@@ -1,5 +1,3 @@
-import time
-
 from Pages.ExitIntentPage import ExitIntentPage
 from Tests.test_base import BaseTest
 
@@ -19,6 +17,8 @@ class TestExitIntent(BaseTest):
         self.EI.close_popup()
         flag = self.EI.is_popup_closed()
         assert flag
+
+
 
 
 

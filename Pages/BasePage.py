@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 import pyautogui as P
 from selenium.webdriver import ActionChains
+import os
 
 
 class BasePage:
@@ -77,6 +78,9 @@ class BasePage:
 
     def move_mouse_offset(self, x, y):
         P.moveTo(x, y, 1)
+
+    def is_file_exist(self,path):
+        return os.path.exists(path)
 
 
 
