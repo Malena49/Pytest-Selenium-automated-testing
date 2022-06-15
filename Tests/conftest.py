@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 
+from Config.config import TestData
 from Pages.AddRemovePage import AddRemovePage
 from Pages.AuthPage import AuthPage
 from Pages.ContextMenuPage import ContextMenuPage
@@ -17,7 +18,7 @@ def driver_init(request):
         # allow xml download and set default download path
         chromeOptions = webdriver.ChromeOptions()
         prefs = {'safebrowsing.enabled': "false",
-                 "download.default_directory": "C:\\test"
+                 "download.default_directory": TestData.DOWNLOAD_PATH
                  }
         chromeOptions.add_experimental_option("prefs", prefs)
         web_driver = webdriver.Chrome(chrome_options=chromeOptions)

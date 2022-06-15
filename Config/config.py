@@ -1,5 +1,7 @@
 class TestData:
     BASE_URL = "https://the-internet.herokuapp.com"
+    # use your own download path
+    DOWNLOAD_PATH ="C:\\test\\"
     USER_NAME = "tomsmith"
     User_PASSWORD = "SuperSecretPassword!"
     LOGIN_PAGE_TITLE = "The Internet"

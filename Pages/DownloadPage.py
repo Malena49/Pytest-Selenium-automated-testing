@@ -7,8 +7,6 @@ from Pages.BasePage import BasePage
 
 
 class DownloadPage(BasePage):
-    # use your own download path
-    BASE_PATH = "C:\\test\\"
     FILES = (By.CSS_SELECTOR, '.example a')
 
     def __init__(self, driver):
@@ -31,7 +29,7 @@ class DownloadPage(BasePage):
         failed_download = []
         for file in files:
             file_name = file.get_attribute('innerHTML').strip()
-            while not os.path.exists(self.BASE_PATH + file_name):
+            while not os.path.exists(TestData.DOWNLOAD_PATH + file_name):
                 time.sleep(1)
                 if time_counter > 20:
                     failed_download.append("Fail to download " + file_name)
@@ -43,7 +41,7 @@ class DownloadPage(BasePage):
         files = self.get_files_list()
         for file in files:
             file_name = file.get_attribute('innerHTML').strip()
-            os.remove(self.BASE_PATH + file_name)
+            os.remove(TestData.DOWNLOAD_PATH + file_name)
 
 
 
