@@ -14,7 +14,13 @@ from Pages.LoginPage import LoginPage
 def driver_init(request):
     web_driver = None
     if request.param == "chrome":
-        web_driver = webdriver.Chrome()
+        # allow xml download and set default download path
+        chromeOptions = webdriver.ChromeOptions()
+        prefs = {'safebrowsing.enabled': "false",
+                 "download.default_directory": "C:\\test"
+                 }
+        chromeOptions.add_experimental_option("prefs", prefs)
+        web_driver = webdriver.Chrome(chrome_options=chromeOptions)
     if request.param == "firefox":
         web_driver = webdriver.Firefox()
     request.cls.driver = web_driver

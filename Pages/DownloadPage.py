@@ -1,6 +1,5 @@
 import os
 import time
-
 from selenium.webdriver.common.by import By
 
 from Config.config import TestData
@@ -9,7 +8,7 @@ from Pages.BasePage import BasePage
 
 class DownloadPage(BasePage):
     # use your own download path
-    BASE_PATH = "C:/Users/shuqzeng/Downloads"
+    BASE_PATH = "C:\\test\\"
     FILES = (By.CSS_SELECTOR, '.example a')
 
     def __init__(self, driver):
@@ -21,21 +20,33 @@ class DownloadPage(BasePage):
     def get_files_list(self):
         return self.get_array(self.FILES)
 
-    def get_files_names(self):
-        files = self.get_files_list()
-        files_names = []
-        for file in files:
-            file_name = file.get_attribute('innerHTML').strip()
-            files_names.append(file_name)
-        return files_names
-
-    def get_download_liens(self):
+    def click_on_all_download_links(self):
         files = self.get_files_list()
         for file in files:
             file.click()
 
-    def get_downloaded_file(self):
-        return self.is_file_exist(self.BASE_PATH)
+    def get_all_failed_download(self):
+        files = self.get_files_list()
+        time_counter = 0
+        failed_download = []
+        for file in files:
+            file_name = file.get_attribute('innerHTML').strip()
+            while not os.path.exists(self.BASE_PATH + file_name):
+                time.sleep(1)
+                if time_counter > 20:
+                    failed_download.append("Fail to download " + file_name)
+                    break
+                time_counter += 1
+        return failed_download
+
+    def delete_all_files(self):
+        files = self.get_files_list()
+        for file in files:
+            file_name = file.get_attribute('innerHTML').strip()
+            os.remove(self.BASE_PATH + file_name)
+
+
+
 
 
 
