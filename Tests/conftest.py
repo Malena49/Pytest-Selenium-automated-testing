@@ -17,8 +17,10 @@ def driver_init(request):
     if request.param == "chrome":
         # allow xml download and set default download path
         chromeOptions = webdriver.ChromeOptions()
+
         prefs = {'safebrowsing.enabled': "false",
-                 "download.default_directory": TestData.DOWNLOAD_PATH
+                 "download.default_directory": TestData.DOWNLOAD_PATH,
+                 "profile.default_content_setting_values.geolocation": 1,
                  }
         chromeOptions.add_experimental_option("prefs", prefs)
         web_driver = webdriver.Chrome(chrome_options=chromeOptions)
