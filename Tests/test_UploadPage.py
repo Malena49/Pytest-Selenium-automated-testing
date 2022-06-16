@@ -1,5 +1,3 @@
-import time
-
 from Pages.UploadPage import UploadPage
 from Tests.test_base import BaseTest
 
