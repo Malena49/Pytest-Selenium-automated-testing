@@ -71,7 +71,6 @@ class BasePage:
         ale.accept()
 
     def drag_and_drop(self, a, b, e, c, d, f):
-        # self.action.drag_and_drop(source, target).perform()
         P.moveTo(a, b, e)
         P.drag(c, d, f, button='left')
 
@@ -83,6 +82,20 @@ class BasePage:
 
     def clear_input_field(self, by_locator):
         self.wait.until(EC.presence_of_element_located(by_locator)).clear()
+
+    def move_an_objet(self, source, a, b):
+        # self.action.move_to_element_with_offset(source, x, y)
+        self.action.move_to_element(source)
+        self.action.click_and_hold()
+        self.action.move_by_offset(a, b)
+        self.action.release()
+        self.action.perform()
+
+    def get_element_dimension(self, by_locator):
+        return self.wait.until(EC.visibility_of_element_located(by_locator)).size
+
+    def get_element_location(self, by_locator):
+        return self.wait.until(EC.visibility_of_element_located(by_locator)).location
 
 
 
