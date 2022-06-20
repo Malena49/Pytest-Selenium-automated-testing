@@ -3,6 +3,7 @@ this  class is parent of all pages
 It contains all generic methods and utilities
 """
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import requests
@@ -12,7 +13,7 @@ from selenium.webdriver import ActionChains
 
 class BasePage:
     def __init__(self, driver):
-        self.driver = driver
+        self.driver: WebElement = driver
         self.wait = WebDriverWait(self.driver, 10)
         self.action = ActionChains(self.driver)
         P.FAILSAFE = False
@@ -97,5 +98,13 @@ class BasePage:
     def get_element_location(self, by_locator):
         return self.wait.until(EC.visibility_of_element_located(by_locator)).location
 
+    def move_mouse_on_element(self, by_locator):
+        self.action.move_to_element(by_locator).perform()
+
+    def locate_visible_element(self, by_locator):
+        self.wait.until(EC.visibility_of_element_located(by_locator))
+
+    def get_invisible_array(self, by_locator):
+        return self.wait.until(EC.presence_of_all_elements_located(by_locator))
 
 
