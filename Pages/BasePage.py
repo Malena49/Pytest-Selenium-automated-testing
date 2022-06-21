@@ -2,6 +2,8 @@
 this  class is parent of all pages
 It contains all generic methods and utilities
 """
+import time
+
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
@@ -107,4 +109,14 @@ class BasePage:
     def get_invisible_array(self, by_locator):
         return self.wait.until(EC.presence_of_all_elements_located(by_locator))
 
+    def scroll_page(self):
+        screen_height = self.driver.execute_script("return window.screen.height;")
+        i = 1
+        while True:
+            self.driver.execute_script(f"window.scrollTo(0, {screen_height}*{i});")
+            i += 1
+            scroll_height = self.driver.execute_script("return document.body.scrollHeight;")
+            # Break the loop when the height we need to scroll to is larger than the total scroll height
+            if screen_height * i < scroll_height:
+                break
 
