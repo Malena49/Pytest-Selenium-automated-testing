@@ -147,3 +147,10 @@ class BasePage:
     def get_browser_javascript_log(self):
         return self.driver.get_log('browser')
 
+    def window_handler(self, num):
+        return self.driver.window_handles[num]
+
+    def switch_window(self, window):
+        self.driver.switch_to.window(window)
+
+
