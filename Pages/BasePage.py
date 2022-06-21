@@ -144,3 +144,6 @@ class BasePage:
     def get_link_href(self, by_locator):
         return self.wait.until(EC.element_to_be_clickable(by_locator)).get_attribute('href')
 
+    def get_browser_javascript_log(self):
+        return self.driver.get_log('browser')
+
