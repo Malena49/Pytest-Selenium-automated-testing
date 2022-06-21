@@ -103,8 +103,11 @@ class BasePage:
     def move_mouse_on_element(self, by_locator):
         self.action.move_to_element(by_locator).perform()
 
+    def move_mouse_on_element_and_click(self, by_locator):
+        self.action.move_to_element(by_locator).click().perform()
+
     def locate_visible_element(self, by_locator):
-        self.wait.until(EC.visibility_of_element_located(by_locator))
+        return self.wait.until(EC.visibility_of_element_located(by_locator))
 
     def get_invisible_array(self, by_locator):
         return self.wait.until(EC.presence_of_all_elements_located(by_locator))
@@ -122,4 +125,7 @@ class BasePage:
 
     def get_input_value(self, by_locator):
         return self.wait.until(EC.visibility_of_element_located(by_locator)).get_attribute('value')
+
+    def get_link_href(self, by_locator):
+        return self.wait.until(EC.element_to_be_clickable(by_locator)).get_attribute('href')
 
