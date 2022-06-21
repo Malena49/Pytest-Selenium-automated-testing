@@ -120,3 +120,6 @@ class BasePage:
             if screen_height * i < scroll_height:
                 break
 
+    def get_input_value(self, by_locator):
+        return self.wait.until(EC.visibility_of_element_located(by_locator)).get_attribute('value')
+
