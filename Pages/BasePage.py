@@ -28,7 +28,7 @@ class BasePage:
 
     def get_element_text(self, by_locator):
         element = self.wait.until(EC.visibility_of_element_located(by_locator))
-        return element.get_attribute('innerHTML')
+        return element.get_attribute('innerHTML').strip()
 
     def is_clickable(self, by_locator):
         element = self.wait.until(EC.element_to_be_clickable(by_locator))
@@ -72,6 +72,20 @@ class BasePage:
     def accept_alert(self):
         ale = Alert(self.driver)
         ale.accept()
+
+    def dismiss_alert(self):
+        ale = Alert(self.driver)
+        ale.dismiss()
+
+    def send_keys_accept_alert(self, text):
+        ale = Alert(self.driver)
+        ale.send_keys(text)
+        ale.accept()
+
+    def send_keys_dismiss_alert(self, text):
+        ale = Alert(self.driver)
+        ale.send_keys(text)
+        ale.dismiss()
 
     def drag_and_drop(self, a, b, e, c, d, f):
         P.moveTo(a, b, e)
@@ -120,7 +134,8 @@ class BasePage:
             i += 1
             scroll_height = self.driver.execute_script("return document.body.scrollHeight;")
             # Break the loop when the height we need to scroll to is larger than the total scroll height
-            if screen_height * i < scroll_height:
+            # if screen_height * i < scroll_height:
+            if i > 200:
                 break
 
     def get_input_value(self, by_locator):

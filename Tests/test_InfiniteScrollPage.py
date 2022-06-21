@@ -1,5 +1,3 @@
-import time
-
 from Pages.InfiniteScrollPage import InfiniteScrollPage
 from Tests.test_base import BaseTest
 
