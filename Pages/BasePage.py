@@ -153,4 +153,7 @@ class BasePage:
     def switch_window(self, window):
         self.driver.switch_to.window(window)
 
+    def wait_for_current_url_change(self, url):
+        self.wait.until(EC.url_changes(url))
+
 
