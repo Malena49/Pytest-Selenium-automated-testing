@@ -2,6 +2,7 @@
 this  class is parent of all pages
 It contains all generic methods and utilities
 """
+import os
 import time
 
 from selenium.webdriver.common.alert import Alert
@@ -155,5 +156,6 @@ class BasePage:
 
     def wait_for_current_url_change(self, url):
         self.wait.until(EC.url_changes(url))
+
 
 

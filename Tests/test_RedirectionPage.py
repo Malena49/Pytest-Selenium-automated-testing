@@ -1,3 +1,5 @@
+import time
+
 from Pages.RedirectionPage import RedirectionPage
 from Tests.test_base import BaseTest
 
@@ -9,7 +11,6 @@ class TestRedirection(BaseTest):
         self.R.redirect_to_another_page()
         url = self.R.get_current_url()
         assert url == self.R.Redirection_URL
-
 
 
 
