@@ -39,3 +39,4 @@ def driver_init(request):
 
     yield
     web_driver.close()
+

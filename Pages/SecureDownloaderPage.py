@@ -44,6 +44,9 @@ class SecureDownloaderPage(BasePage):
                 time_counter += 1
         return failed_download
 
+    def empty_download_folder(self):
+        self.empty_a_folder("C:/test/*")
+
 
 
 

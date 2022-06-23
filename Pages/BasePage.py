@@ -2,7 +2,9 @@
 this  class is parent of all pages
 It contains all generic methods and utilities
 """
+import glob
 import os
+import shutil
 import time
 
 from selenium.webdriver.common.alert import Alert
@@ -156,6 +158,11 @@ class BasePage:
 
     def wait_for_current_url_change(self, url):
         self.wait.until(EC.url_changes(url))
+
+    def empty_a_folder(self, folder_path):
+        files = glob.glob(folder_path)
+        for f in files:
+            os.remove(f)
 
 
 
