@@ -100,6 +100,9 @@ class BasePage:
     def focus_on_frame(self, by_locator):
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(by_locator))
 
+    def move_out_of_frame(self):
+        self.driver.switch_to.default_content()
+
     def clear_input_field(self, by_locator):
         self.wait.until(EC.presence_of_element_located(by_locator)).clear()
 
@@ -163,6 +166,12 @@ class BasePage:
         files = glob.glob(folder_path)
         for f in files:
             os.remove(f)
+
+    def get_css_property(self, by_locator, css_property):
+        element = self.wait.until(
+            EC.visibility_of_element_located(by_locator)
+        ).value_of_css_property(css_property)
+        return element
 
 
 
